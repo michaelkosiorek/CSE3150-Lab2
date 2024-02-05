@@ -12,7 +12,7 @@ int main() {
 
     int n = stoi(n_string);
 
-    cout << n << endl;
+    // cout << n << endl;
 
     int array_values[2*n];
 
@@ -25,6 +25,31 @@ int main() {
     }
 
     print_array(array_values, 2*n);
+
+
+    srand(2024);
+
+    int non_pos_prefix_sums=0;
+    int non_neg_prefix_sums=0;
+
+    int iterations=100000;
+    for (int i=0; i < iterations; i++) {
+        fisher_yates(array_values, 2*n, rand);
+        print_array(array_values, 2*n);
+
+        if (non_neg_prefix_sum(array_values, 2*n)) {
+            non_neg_prefix_sums++;
+            //cout << "VALID LIST ABOVE" << endl;
+        }
+        if (non_pos_prefix_sum(array_values, 2*n)) non_pos_prefix_sums++;
+    }
+
+    cout << "Valid parenthesizations: " << non_neg_prefix_sums << endl;
+    cout << "Reverse-valid parenthesizations: " << non_pos_prefix_sums << endl;
+    cout << "Total trials: " << iterations << endl;
+
+    cout << "Valid parenthesizations proportion: " << (float)non_neg_prefix_sums/iterations << endl;
+
 
     return 0;
 }
