@@ -36,13 +36,18 @@ void fisher_yates(int array[], const int length, int (* random_func)()) {
   }
 }
 
+int array_sum(int array[], const int length) {
+    int sum=0;
+    for (int i=0; i < length; i++) sum += array[i];
+    return sum;
+}
+
 bool non_neg_prefix_sum(int ary[], int length) {
     int sum=0;
     for(int i=0; i<length; i++) {
         sum += ary[i];
         if (sum < 0) return false;
     }
-
     return true;
 }
 
@@ -53,6 +58,5 @@ bool non_pos_prefix_sum(int ary[], int length) {
         sum += ary[i];
         if (sum > 0) return false;
     }
-
     return true;
 }
